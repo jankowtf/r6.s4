@@ -9,8 +9,19 @@
     .GlobalEnv
   }
   print(where)
-  try(setOldClass(c("Object", "R6"), where = where))
-  try(setOldClass(c("Api", "Object"), where = where))
-  try(setOldClass(c("Module", "Api"), where = where))
-  try(setOldClass(c("Module2", "Api"), where = where))
+  clss <- list(
+    c("Object", "R6"),
+    c("Api", "Object"),
+    c("ApiModule", "Api"),
+    c("Forecasting", "Api")
+  )
+  print("Before:")
+  print(getClasses(where = where))
+  sapply(clss, function(cls) {
+    idx <- sapply(cls, isClass)
+    try(sapply(cls[idx], removeClass, where = where))
+    try(setOldClass(cls, where = where))
+  })
+  print("After:")
+  print(getClasses(where = where))
 }
