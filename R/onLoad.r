@@ -12,8 +12,7 @@
   clss <- list(
     c("Object", "R6"),
     c("Api", "Object"),
-    c("ApiModule", "Api"),
-    c("Forecasting", "Api")
+    c("Module2", "Api")
   )
   print("Before:")
   print(getClasses(where = where))
